@@ -15,7 +15,7 @@
     }
   ],
   "permissions" : [
-    "tabs", "http://twitter.com/", "https://twitter.com/", "https://www.authorgraph.com/"
+    "*://twitter.com/"
   ],
   "icons": { "16": "icon_016.png",
              "48": "icon_048.png",
