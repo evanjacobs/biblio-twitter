@@ -2,10 +2,7 @@
   "manifest_version": 2,
   "name": "biblio-twitter",
   "version": "1.0",
-  "description": "Shows books written by authors on their profile pages",
-  "page_action": {
-    "default_title": "This is Twitter"
-  },
+  "description": "View an author's books directly on her Twitter profile page",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -14,10 +11,14 @@
     {
       "matches": ["http://twitter.com/*", "https://twitter.com/*"],
       "js": ["jquery-1.7.2.min.js", "background.js"],
-      "css": ["makers.css"]
+      "css": ["bootstrap.min.css"]
     }
   ],
   "permissions" : [
     "tabs", "http://twitter.com/", "https://twitter.com/", "https://www.authorgraph.com/"
-  ]
+  ],
+  "icons": { "16": "icon_016.png",
+             "48": "icon_048.png",
+            "128": "icon_128.png"
+  }
 }
