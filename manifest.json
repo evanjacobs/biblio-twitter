@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "biblio-twitter",
-  "version": "1.2",
+  "version": "1.3",
   "description": "View an author's books directly on her Twitter profile page",
   "background": {
     "scripts": ["background.js"],
@@ -15,7 +15,7 @@
     }
   ],
   "permissions" : [
-    "*://twitter.com/", "https://www.authorgraph.com"
+    "*://twitter.com/", "https://www.authorgraph.com/"
   ],
   "icons": { "16": "icon_016.png",
              "48": "icon_048.png",
