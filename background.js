@@ -28,7 +28,7 @@ $(document).ready(function() {
 
   function sidebar_block() {
     var title = books.length > 1 ? " Books" : " Book";
-    var html_start = '<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"><div class="PhotoRail" style="display: block;" data-loaded="true"><div class="PhotoRail-heading"><span class="glyphicon glyphicon-book"></span><span class="PhotoRail-headingText"><a href="http://www.authorgraph.com/authors/' + author + '" target="_blank"> ' + books.length + title + ' </a></span></div><div class="PhotoRail-mediabox">';
+    var html_start = '<div class="PhotoRail" style="display: block;"><div class="PhotoRail-heading"><span class="glyphicon glyphicon-book"></span><span class="PhotoRail-headingText"><a href="http://www.authorgraph.com/authors/' + author + '" target="_blank"> ' + books.length + title + ' </a></span></div><div class="PhotoRail-mediabox">';
 
     var html_body = '';
     for (var i in books) {
