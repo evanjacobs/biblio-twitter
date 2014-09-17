@@ -1,41 +1,48 @@
 $(document).ready(function() {
-    var current_user = $(location).attr('href').match(/twitter\.com\/(.*)/)[1];
-    var elem = $('.ProfileHeaderCard');
-    var books = {};
+  var author = $(location).attr('href').match(/twitter\.com\/(.*)/)[1];
+  var sidebar = $('.ProfileHeaderCard');
+  var navbar = $('.ProfileNav-item--tweets');
+  var books = {};
 
-    if (current_user) {
-      fetch_books(current_user);
-    }
+  if (author) {
+    fetch_books(author);
+  }
 
-    function fetch_books(author) {
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "https://www.authorgraph.com/authors/" + author + ".json", true);
-	xhr.onreadystatechange = function() {
-	    if (xhr.readyState == 4) {
-		if (xhr.status == 200) {
-		    var resp = JSON.parse(xhr.responseText);
-		    var books = resp['books'];
-		    if (books.length > 0) {
-                      var block = books_block(books, author);
-		      $(elem).after(block);
-		    }
-		}
-	    }
-	}
-	xhr.send();
-    }
-
-    function books_block(books, author) {
-      var title = books.length > 1 ? " Books" : " Book";
-      var html_start = '<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"><div class="PhotoRail" style="display: block;" data-loaded="true"><div class="PhotoRail-heading"><span class="glyphicon glyphicon-book"></span><span class="PhotoRail-headingText"><a href="/' + author + '/books" class="js-nav"> ' + books.length + title + ' </a></span></div>';
-
-      var html_body = '';
-      for (var i in books) {
-        html_body += '<div class="PhotoRail-mediabox"><span><a href="http://www.amazon.com/dp/' + books[i].asin + '" target="_blank"><img src="' + books[i].image_url + '" style="height: 83px; width: 83px;" /></span></div>';
+  function fetch_books(author) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://www.authorgraph.com/authors/" + author + ".json", true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200) {
+          var resp = JSON.parse(xhr.responseText);
+          books = resp['books'];
+          if (books.length > 0) {
+            $(sidebar).after(sidebar_block());
+            $(navbar).after(navbar_block());
+          }
+        }
       }
-
-      var html_end = '</div>';
-      return html_start + html_body + html_end;
     }
+    xhr.send();
+  }
+
+  function sidebar_block() {
+    var title = books.length > 1 ? " Books" : " Book";
+    var html_start = '<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"><div class="PhotoRail" style="display: block;" data-loaded="true"><div class="PhotoRail-heading"><span class="glyphicon glyphicon-book"></span><span class="PhotoRail-headingText"><a href="http://www.authorgraph.com/authors/' + author + '" target="_blank"> ' + books.length + title + ' </a></span></div><div class="PhotoRail-mediabox">';
+
+    var html_body = '';
+    for (var i in books) {
+      if (i > 5) break;
+      html_body += '<span><a href="http://www.amazon.com/gp/product/' + books[i].asin + '?tag=authorgraph-20" target="_blank"><img src="' + books[i].image_url + '" style="height: 83px; width: 83px; margin: 5px 0 0 3px; border-radius: 4px"></a></span>';
+    }
+
+    var html_end = '</div></div>';
+    return html_start + html_body + html_end;
+  }
+
+  function navbar_block() {
+    var html = '<li class="ProfileNav-item ProfileNav-item--books"><a class="ProfileNav-stat ProfileNav-stat--link u-borderUserColor u-textCenter js-tooltip u-textUserColor" href="http://www.authorgraph.com/authors/' + author + '" target="_blank"><span class="ProfileNav-label">Books</span><span class="ProfileNav-value">' + books.length + '</span></a></li>';
+    return html;
+  }
 
 });
