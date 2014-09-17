@@ -15,7 +15,7 @@ $(document).ready(function() {
       if (xhr.readyState == 4) {
         if (xhr.status == 200) {
           var resp = JSON.parse(xhr.responseText);
-          books = resp['books'];
+          books = resp['books'].sort(function(a,b){return a.data.salesrank - b.data.salesrank});
           if (books.length > 0) {
             $(sidebar).after(sidebar_block());
             $(navbar).after(navbar_block());
