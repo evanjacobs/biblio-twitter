@@ -15,7 +15,7 @@
     }
   ],
   "permissions" : [
-    "*://twitter.com/"
+    "*://twitter.com/", "https://www.authorgraph.com"
   ],
   "icons": { "16": "icon_016.png",
              "48": "icon_048.png",
