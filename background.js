@@ -33,7 +33,7 @@ $(document).ready(function() {
     var html_body = '';
     for (var i in books) {
       if (i > 5) break;
-      html_body += '<span><a href="http://www.amazon.com/gp/product/' + books[i].asin + '?tag=authorgraph-20" target="_blank"><img src="' + books[i].image_url + '" style="height: 83px; width: 83px; margin: 5px 0 0 3px; border-radius: 4px"></a></span>';
+      html_body += '<span><a href="http://www.amazon.com/gp/product/' + books[i].asin + '?tag=authorgraph-20" target="_blank"><img src="http://ecx.images-amazon.com/images/I/' + books[i].data.image + '.jpg'" style="height: 83px; width: 83px; margin: 5px 0 0 3px; border-radius: 4px"></a></span>';
     }
 
     var html_end = '</div></div>';
